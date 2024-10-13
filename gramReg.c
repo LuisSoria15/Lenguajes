@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
 #define TAM 250
 
 typedef struct nodo1 
@@ -12,8 +11,8 @@ typedef struct nodo1
 
 TNodo *crea_nodo(char *dato);
 void inserta_final(TNodo **cab, char *dato);
-void imprime(TNodo *cab);
 TNodo* leer_archivo(char *nombre_archivo);
+void imprime(TNodo *cab);
 
 int main() 
 {
@@ -65,22 +64,12 @@ void inserta_final(TNodo **cab, char *dato)
     }
 }
 
-void imprime(TNodo *cab) 
-{
-    TNodo *aux = cab;
-    while (aux != NULL) 
-    {
-        printf("%s\n", aux->info);
-        aux = aux->sig;
-    }
-}
-
 TNodo* leer_archivo(char *nombre_archivo) 
 {
     FILE *archivo = fopen(nombre_archivo, "r");
-    if (!archivo) 
+    if (archivo==NULL) 
     {
-        perror("Error al abrir el archivo");
+        perror("Error");
         exit(EXIT_FAILURE);
     }
 
@@ -94,4 +83,14 @@ TNodo* leer_archivo(char *nombre_archivo)
     }
     fclose(archivo);
     return cabeza;
+}
+
+void imprime(TNodo *cab) 
+{
+    TNodo *aux = cab;
+    while (aux != NULL) 
+    {
+        printf("%s\n", aux->info);
+        aux = aux->sig;
+    }
 }
