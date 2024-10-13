@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define TAM 250
+#define TAM 300
 
 typedef struct nodo1 
 {
@@ -67,7 +67,7 @@ void inserta_final(TNodo **cab, char *dato)
 TNodo* leer_archivo(char *nombre_archivo) 
 {
     FILE *archivo = fopen(nombre_archivo, "r");
-    if (archivo==NULL) 
+    if (archivo == NULL) 
     {
         perror("Error");
         exit(EXIT_FAILURE);
@@ -78,7 +78,14 @@ TNodo* leer_archivo(char *nombre_archivo)
 
     while (fgets(linea, TAM, archivo)) 
     {
-        linea[strcspn(linea, "\n")] = '\0';
+        for (int i = 0; linea[i] != '\0'; i++) 
+        {
+            if (linea[i] == '\n') 
+            {
+                linea[i] = '\0';
+                break;
+            }
+        }
         inserta_final(&cabeza, linea);  
     }
     fclose(archivo);
