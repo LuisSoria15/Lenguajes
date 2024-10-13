@@ -95,6 +95,7 @@ TNodo* leer_archivo(char *nombre_archivo)
 void imprime(TNodo *cab) 
 {
     TNodo *aux = cab;
+    printf("Lista impresa en terminal:\n");
     while (aux != NULL) 
     {
         printf("%s\n", aux->info);
